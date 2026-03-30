@@ -7,7 +7,8 @@ const phones = ref([]);
 onMounted(() => {
   axios.get("http://localhost:9090/api/phones")
     .then(response => {
-      phones.value = response.data;
+      // Звертаємося до структури _embedded, яку генерує Spring Data REST
+      phones.value = response.data._embedded.phones;
     })
     .catch(error => console.error("Помилка завантаження", error));
 });
@@ -17,7 +18,7 @@ onMounted(() => {
   <div style="font-family: Arial, sans-serif; padding: 20px;">
     <h1>Каталог мобільних телефонів</h1>
     <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-      <div v-for="phone in phones" :key="phone.id" style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center;">
+      <div v-for="(phone, index) in phones" :key="phone.id || index" style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 250px; text-align: center;">
         <img :src="phone.imageUrl" alt="Фото" style="max-width: 150px; height: auto; margin-bottom: 10px;" v-if="phone.imageUrl"/>
         <h2 style="margin: 0 0 10px 0;">{{ phone.brand }} {{ phone.model }}</h2>
         <p style="font-size: 18px; font-weight: bold; color: #2c3e50;">Ціна: {{ phone.price }} грн</p>
