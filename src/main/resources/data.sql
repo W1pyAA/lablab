@@ -1,0 +1,2 @@
+INSERT INTO phones (brand, model, price, image_url) VALUES ('Apple', 'iPhone 15', 42000, 'https://content1.rozetka.com.ua/goods/images/big/364623821.jpg');
+INSERT INTO phones (brand, model, price, image_url) VALUES ('Samsung', 'Galaxy S24', 38000, 'https://content.rozetka.com.ua/goods/images/big/404107198.jpg');
